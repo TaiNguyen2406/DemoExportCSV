@@ -45,8 +45,12 @@ namespace DemoExportCSV
             {
                 modbusClient = new ModbusClient(txtIP.Text, 502);    //Ip-Address and Port of Modbus-TCP-Server
                 modbusClient.Connect();
-                lblStatus.Text = "Connected";
-                timer2.Enabled = true;
+                if(modbusClient .Connected )
+                {
+                    lblStatus.Text = "Connected";
+                    timer2.Enabled = true;
+                }
+             
             }
             catch (Exception ex)
             {
@@ -86,19 +90,32 @@ namespace DemoExportCSV
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            timer2.Enabled = false;
-            bool[] readCoils = modbusClient.ReadCoils(Decimal.ToInt32(nudCoil1.Value), 1);
-            bool[] readCoils2 = modbusClient.ReadCoils(Decimal.ToInt32(nudCoil2.Value), 1);
-            int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(Decimal.ToInt32(nudReg1.Value), 1);
-            int[] readHoldingRegisters2 = modbusClient.ReadHoldingRegisters(Decimal.ToInt32(nudReg2.Value), 1);
-            int[] readInputRegisters = modbusClient.ReadInputRegisters(0, 1);// đọc analogue input
-          
-            txtGiaTri1.Text = readHoldingRegisters[0].ToString();
-            txtGiaTri2.Text = readHoldingRegisters2[0].ToString();
-            chk1.Checked = readCoils[0];
-            chk2.Checked = readCoils2[0];
-            txtInputReg.Text = readInputRegisters[0].ToString();
-            timer2.Enabled = true;
+            try
+            {
+                timer2.Enabled = false;
+                bool[] readCoils = modbusClient.ReadCoils(Decimal.ToInt32(nudCoil1.Value), 1);
+                bool[] readCoils2 = modbusClient.ReadCoils(Decimal.ToInt32(nudCoil2.Value), 1);
+                int[] readHoldingRegisters = modbusClient.ReadHoldingRegisters(Decimal.ToInt32(nudReg1.Value), 1);
+                int[] readHoldingRegisters2 = modbusClient.ReadHoldingRegisters(Decimal.ToInt32(nudReg2.Value), 1);
+                int[] readInputRegisters = modbusClient.ReadInputRegisters(0, 1);// đọc analogue input
+
+                txtGiaTri1.Text = readHoldingRegisters[0].ToString();
+                txtGiaTri2.Text = readHoldingRegisters2[0].ToString();
+                chk1.Checked = readCoils[0];
+                chk2.Checked = readCoils2[0];
+                txtInputReg.Text = readInputRegisters[0].ToString();
+                timer2.Enabled = true;
+            }
+            catch
+            {
+                lblStatus.Text = "Error";
+            }
+            
+        }
+
+        private void frmDocDuLieu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            modbusClient.Disconnect();
         }
     }
 }

@@ -61,6 +61,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.txt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudRegNoW)).BeginInit();
@@ -84,7 +85,7 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(21, 354);
+            this.btnConnect.Location = new System.Drawing.Point(36, 200);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(71, 41);
             this.btnConnect.TabIndex = 2;
@@ -94,7 +95,7 @@
             // 
             // btnDisConnect
             // 
-            this.btnDisConnect.Location = new System.Drawing.Point(113, 354);
+            this.btnDisConnect.Location = new System.Drawing.Point(128, 200);
             this.btnDisConnect.Name = "btnDisConnect";
             this.btnDisConnect.Size = new System.Drawing.Size(71, 41);
             this.btnDisConnect.TabIndex = 3;
@@ -160,7 +161,7 @@
             this.groupBox1.Controls.Add(this.txtGiaTri2);
             this.groupBox1.Location = new System.Drawing.Point(12, 25);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 262);
+            this.groupBox1.Size = new System.Drawing.Size(246, 169);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Đọc";
@@ -221,7 +222,7 @@
             // 
             // btnGhi
             // 
-            this.btnGhi.Location = new System.Drawing.Point(286, 354);
+            this.btnGhi.Location = new System.Drawing.Point(300, 200);
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.Size = new System.Drawing.Size(71, 41);
             this.btnGhi.TabIndex = 13;
@@ -397,11 +398,19 @@
             this.label9.TabIndex = 23;
             this.label9.Text = "IP:";
             // 
+            // txt
+            // 
+            this.txt.Location = new System.Drawing.Point(139, 261);
+            this.txt.Name = "txt";
+            this.txt.Size = new System.Drawing.Size(100, 20);
+            this.txt.TabIndex = 24;
+            // 
             // frmDocDuLieu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 450);
+            this.Controls.Add(this.txt);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtIP);
             this.Controls.Add(this.btnGhi);
@@ -412,6 +421,7 @@
             this.Controls.Add(this.lblStatus);
             this.Name = "frmDocDuLieu";
             this.Text = "ĐọC dỮ LiỆu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDocDuLieu_FormClosed);
             this.Load += new System.EventHandler(this.frmDocDuLieu_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -464,5 +474,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.TextBox txtIP;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txt;
     }
 }
